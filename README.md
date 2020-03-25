@@ -22,13 +22,80 @@ Je vous invite à regarder la vidéo de [Human Talks Paris](https://www.youtube.
 Quelques petites questions :
 
 - Résumer en une phrase l'intérêt de Material UI
+UI Kit
+
 - Comment importer `material-ui` dans un fichier ?
+import xxx from '@material-ui/yyy/xxx';
+
 - Comment une application peut utiliser un thème à travers l'ensemble d'un projet ?
+En utilisant un thème provider et en lui indiquant l'objet thème à prendre: <MuiThemeProvider theme="xxx" ></MuiThemeProvider>
+
 - A quoi sert `createMuiTheme` ?
+C'est une fonction qui permet de personnaliser une partie des composants qu'en a importés et ainsi écraser les styles par défaut concerné.
+
 - A quoi correspond `palette` ?
+`Palette` correspond à tout ce qui se rapporte à la couleur
+
 - Comment re-définir des propriétés ?
+Pour redéfinir des propriétés on peut utiliser  dans `createMuiTheme` la propriété `overrides`.
+
 - A quoi vous fait penser `withStyle` ? Comment l'utiliser ?
+En important `withStyle` on peut fournir un fichier style au composant que l'on souhaite modifier. Si `createMuiTheme` applique ses propriété de modification à l'ensemble des éléments de la même catégorie (ex : tous les boutons, tous les cards ... ), `withStyle` permet d'appliquer ses propriétés à un ou plusieurs éléments de la même catégorie facilement en précisant dans l'élément la proprité `ClassName` sans modifier l'ensemble.
+
 - Reproduire les deux boutons rouge et bleu présentées dans la vidéo.
+/////////////////////////////////////////////////
+import React, {Component} from 'react';
+import Button from '@material-ui/core/Button';
+import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core';
+import { blue } from '@material-ui/core/colors';
+
+class App extends Component {
+    render(){
+        return (
+            <div>
+                <MuiThemeProvider theme={themePartButton}>
+                    <Button className={this.props.classes.leftButton}>Left</Button>
+                    <Button>Right</Button>
+                </MuiThemeProvider>
+            </div>
+        );
+    }
+}
+
+const themePartButton = createMuiTheme({
+  typography : {
+    fontSize : 25,
+    fontFamily : 'Arial',
+
+  },
+  palette : {
+    primary : blue,
+  },
+  overrides : {
+    MuiButton : {
+      root:{
+        //background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        backgroundColor :"red",
+        '&:hover': {
+          backgroundColor: "yellow",
+        },
+        color : "white",
+
+      }
+    }
+  }
+});
+
+const styles = {
+  leftButton : {
+    backgroundColor : "blue"
+  }
+};
+
+export default withStyles(styles)(App);
+///////////////////////////////////////////
+
+
 
 
 ## Styled Components
@@ -38,11 +105,19 @@ De la même manière, voici une [vidéo](https://www.youtube.com/watch?v=mS0UKNB
 Quelques petites questions :
 
 - Qu'est-ce que le CSS-in-JS ?
+
 - Qu'est-ce que sont les tagged templates (délimitées par des backticks) ?
+
 - Donner un exemple d'un bouton personnalisé avec et sans les tagged templates ?
+
 - Comment utilise-t-on les props dans cette librarie ?
+
 - Reprendre l'exemple du Material UI avec styled-components; l'écrire avec la composition et avec l'héritage.
+
 - Quelles sont les fonctions du contexte de styled-components ?
+
+
+
 
 
 ## Mise en place du design
