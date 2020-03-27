@@ -22,29 +22,29 @@ Je vous invite à regarder la vidéo de [Human Talks Paris](https://www.youtube.
 Quelques petites questions :
 
 - Résumer en une phrase l'intérêt de Material UI
-    UI Kit
+  - Un UI Kit qui inclut des composants près stylisés que l'on peut customiser pour designer une interface
 
 - Comment importer `material-ui` dans un fichier ?
-    import xxx from '@material-ui/yyy/xxx';
+  - import xxx from '@material-ui/yyy/xxx';
 
 - Comment une application peut utiliser un thème à travers l'ensemble d'un projet ?
-    En utilisant un thème provider et en lui indiquant l'objet thème à prendre: <MuiThemeProvider theme="xxx" ></MuiThemeProvider>
+  - En utilisant un thème provider et en lui indiquant l'objet thème à prendre: <MuiThemeProvider theme="xxx" ></MuiThemeProvider>
 
 - A quoi sert `createMuiTheme` ?
-    C'est une fonction qui permet de personnaliser une partie des composants qu'en a importés et ainsi écraser les styles par défaut concerné.
+  - C'est une fonction qui permet de personnaliser une partie des composants qu'en a importés et ainsi écraser les styles par défaut concerné.
 
 - A quoi correspond `palette` ?
-    `Palette` correspond à tout ce qui se rapporte à la couleur
+  - `Palette` correspond à tout ce qui se rapporte à la couleur
 
 - Comment re-définir des propriétés ?
-    Pour redéfinir des propriétés on peut utiliser  dans `createMuiTheme` la propriété `overrides`.
+  - Pour redéfinir des propriétés on peut utiliser  dans `createMuiTheme` la propriété `overrides`.
 
 - A quoi vous fait penser `withStyle` ? Comment l'utiliser ?
-    En important `withStyle` on peut fournir un fichier style au composant que l'on souhaite modifier. Si `createMuiTheme` applique ses propriété de modification à l'ensemble des éléments de la même catégorie (ex : tous les boutons, tous les cards ... ), `withStyle` permet d'appliquer ses propriétés à un ou plusieurs éléments de la même catégorie facilement en précisant dans l'élément la proprité `ClassName` sans modifier l'ensemble.
+  - En important `withStyle` on peut fournir un fichier style au composant que l'on souhaite modifier. Si `createMuiTheme` applique ses propriété de modification à l'ensemble des éléments de la même catégorie (ex : tous les boutons, tous les cards ... ), `withStyle` permet d'appliquer ses propriétés à un ou plusieurs éléments de la même catégorie facilement en précisant dans l'élément la proprité `ClassName` sans modifier l'ensemble.
 
 - Reproduire les deux boutons rouge et bleu présentées dans la vidéo.
 
-````
+```javascript
     import React, {Component} from 'react';
     import Button from '@material-ui/core/Button';
     import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core';
@@ -75,7 +75,7 @@ Quelques petites questions :
     overrides : {
         MuiButton : {
         root:{
-            //background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+
             backgroundColor :"red",
             '&:hover': {
             backgroundColor: "yellow",
@@ -94,7 +94,7 @@ Quelques petites questions :
     };
 
     export default withStyles(styles)(App);
-``````
+```
 ## Styled Components
 
 De la même manière, voici une [vidéo](https://www.youtube.com/watch?v=mS0UKNBh-Ig) pour introduire le sujet.
@@ -102,29 +102,98 @@ De la même manière, voici une [vidéo](https://www.youtube.com/watch?v=mS0UKNB
 Quelques petites questions :
 
 - Qu'est-ce que le CSS-in-JS ?
-    Gestion du CSS dans Javascript. 
-    CSS-in-JS génère des classes dynamique et permet donc d'imbriquer le code CSS. 
-    CSS-in-Js permet aussi de gérer des `scope` .
+  - Gestion du CSS dans Javascript. 
+  - CSS-in-JS génère des classes dynamique et permet donc d'imbriquer le code CSS. 
+  - CSS-in-Js permet aussi de gérer des `scope` .
 
 - Qu'est-ce que sont les tagged templates (délimitées par des backticks) ?
-    Les tagged templates permettent d'écrire plus facilement les propriétés en remplaçant les ([""]) par des ``
+  - Les tagged templates permettent d'écrire plus facilement les propriétés en remplaçant les ([""]) par des ``
 
 - Donner un exemple d'un bouton personnalisé avec et sans les tagged templates ?
-    Sans tagged template :
+  - Sans tagged template :
+    ````javascript
         const Button = styled.button(["color : blue;"])
-    
-    Avec tagged template :
+    ````
+  - Avec tagged template :
+    ````javascript
         const Button = styled.button`
             color : blue;
-        `
-
+         `
+    ````
 - Comment utilise-t-on les props dans cette librarie ?
-    Styled component va passer directement dans le DOM tous les props qu'il reconnait et l'ajoute à travers le composant créée.
+  - Styled component va passer directement dans le DOM tous les props qu'il reconnait et l'ajoute à travers le composant créée.
 
 - Reprendre l'exemple du Material UI avec styled-components; l'écrire avec la composition et avec l'héritage.
+  - Avec la composition :
+    ````javascript
+    import React from 'react';
+    import styled from 'styled-components';
 
+    function App(props){
+        return(
+            <div>
+              <ButtonLeft>Left</ButtonLeft> 
+              <ButtonRight>Right</ButtonRight>
+            </div>
+        );
+    }
+    const communStyle = `
+        color: white;
+        font-size: 25;
+        font-family: Arial;
+        margin: 1em;
+        padding: 0.5em 1em;
+        border-radius: 8px;
+        text-transform: uppercase;
+        &:hover {
+            color: grey;
+            background-color: yellow;
+            };
+    `
+    const ButtonLeft=styled.button`
+        ${communStyle}
+        background-color: blue;
+    `
+    const ButtonRight=styled.button`
+        ${communStyle}
+        background-color: red;
+    `
+    export default (App);
+    ````
+  - Avec l'héritage
+    ````javascript 
+    import React from 'react';
+    import styled from 'styled-components';
 
+    function App(props){
+        return(
+            <div>
+              <ButtonLeft>Left</ButtonLeft> 
+              <ButtonRight>Right</ButtonRight>
+            </div>
+        );
+    }
+    const ButtonLeft=styled.button`
+        color: white;
+        font-size: 25;
+        font-family: Arial;
+        margin: 1em;
+        padding: 0.5em 1em;
+        border-radius: 8px;
+        text-transform: uppercase;
+        &:hover {
+            color: grey;
+            background-color: yellow;
+            };
+        background-color: blue;
+    `
+    const ButtonRight=styled(ButtonLeft)`
+        background-color: red;
+    `
+    export default (App);
+    ````
 - Quelles sont les fonctions du contexte de styled-components ?
+    - Le contexte de styled-components permet de gérer le thème avec des `ThemeProvider`
 
 
 
