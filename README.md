@@ -14,6 +14,12 @@ Ce code reprend le jeu du loup garou pour la dernière séance de cours avec les
 
 Au cas où vous avez un trou de mémoire sur Sass, voici un [rappel de la syntaxe](https://devhints.io/sass).
 
+## Notes de cours
+
+- Les [contextes en React avec des classes](./context_react.md) 
+- Les [contextes en React avec des fonctions](./context_hooks.md) 
+
+
 ## Material UI
 
 Je vous invite à regarder la vidéo de [Human Talks Paris](https://www.youtube.com/watch?v=D3tB_DGgICE).
@@ -25,7 +31,9 @@ Quelques petites questions :
   - Un UI Kit qui inclut des composants près stylisés que l'on peut customiser pour designer une interface
 
 - Comment importer `material-ui` dans un fichier ?
-  - import xxx from '@material-ui/yyy/xxx';
+  ````javascript
+  import xxx from '@material-ui/yyy/xxx';
+  ````
 
 - Comment une application peut utiliser un thème à travers l'ensemble d'un projet ?
   - En utilisant un thème provider et en lui indiquant l'objet thème à prendre: <MuiThemeProvider theme="xxx" ></MuiThemeProvider>
@@ -212,8 +220,15 @@ Une contrainte importante est la synchronisation des joueurs : chaque joueur uti
 
 Une partie du code vous est fournie, afin de faciliter la mise en place de Firebase et des context providers. Il vous est demandé d'explorer le code, d'y apporter un design responsive, et de compléter l'application pour ajouter les différentes étapes de jeu.
 
-Copier .env dans .env.local et remplir de dernier à l'aide de ses identifiants Firebase.
-Activer l'authentification anonyme dans la console de Firebase.
+>Copier .env dans .env.local et remplir de dernier à l'aide de ses identifiants Firebase.
+>Activer l'authentification anonyme dans la console de Firebase.
+
+### Installation du projet
+
+Dans la [console de Firebase](https://console.firebase.google.com/), créer un nouveau projet. Dans le menu de gauche, cliquer sur "Authentication", puis cliquer sur l'onglet "Sign-in method", puis sélectionner "Anonymous" et activer le bouton "Enable". Ensuite, cliquer sur "Database" puis créer un "Cloud Firestore". Il est important de mettre la base de données en mode test. 
+
+Copier .env dans .env.local et remplir de dernier à l'aide de ses identifiants Firebase. Ses identifiants Firebase peuvent être récupérés dans la console, en cliquant sur l'engrenage dans le menu à droite, puis sur "Project settings", puis sur l'icone web `</>`. Il faut copier le authDomain, l'apiKey et le projetId dans .env.local. Attention à ne pas mettre d'espace autour des `=` ou de `;`.
+
 
 ### Découverte du code
 
