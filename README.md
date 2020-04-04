@@ -152,6 +152,7 @@ Quelques petites questions :
         margin: 1em;
         padding: 0.5em 1em;
         border-radius: 8px;
+        border: none;
         text-transform: uppercase;
         &:hover {
             color: grey;
@@ -188,6 +189,7 @@ Quelques petites questions :
         margin: 1em;
         padding: 0.5em 1em;
         border-radius: 8px;
+        border: none;
         text-transform: uppercase;
         &:hover {
             color: grey;
@@ -200,6 +202,7 @@ Quelques petites questions :
     `
     export default (App);
     ````
+
 - Quelles sont les fonctions du contexte de styled-components ?
     - Le contexte de styled-components permet de gérer le thème avec des `ThemeProvider`
 
@@ -233,12 +236,85 @@ Copier .env dans .env.local et remplir de dernier à l'aide de ses identifiants 
 ### Découverte du code
 
 - Le code utilise des fonctions plutôt que des classes. Ecrire un bouton sous la forme d'une classe et d'une fonction. Retrouver les équivalences entre les méthodes des composants (telles que setState) et celles des fonctions ?
+  - Bouton sous la forme d'une classe : 
+  ````jsx
+    import React from 'react';
+
+    class Button extends React {
+      render(){
+        const { onClick, children } = this.props;
+        return (
+          <button onClick={onClick}> { children }</button>;
+        )
+      }
+    }
+    export default Button ;
+  ````
+  - Bouton sous la forme d'une fonction : 
+  ````jsx
+    import React from 'react';
+
+    const Button = (props) => {
+      const { onClick, children } = props;
+      return (
+        <button onClick={onClick}> { children }</button>;
+      )
+    }
+    export default Button;
+  ````
+  - class : state -> function : useState
+  - Utilisation des hooks : 
+  ````jsx
+    const [val, setVal] = React.useState(false)
+  ````
+  - Pour les fonctions tels que componentDidMount ou encore componentDidUnmount, on utilise useEffect :
+  ````jsx
+  	React.useEffect(() => {
+        // code
+    })
+  ````
+
 - Comment récupérer les props dans une fonction ?
+  - Pour récupérer les props dans une fonction, on passe les props dans les paramètres de la fonction : 
+  ````jsx
+    function fonction(props){
+      //code
+    }
+  ````
+
 - Dans `App.js`, identifier les différents producteurs de données. Retrouver leur définition. Quelles données partagent-ils à l'ensemble de l'application ?
+  - BrowserRouter :  
+  - UserProvider : partage toute information relative à l'utilisateur actuelle
+  - MasterGameProvider :  partage les informations pour créer le jeux, et fournit les résultats du jeux
+  - Game Provider : partage les information relative au status des joueurs (ex : si le joueur et toujours en vie ou non)
+
 - Identifier les différentes pages de l'application. Décrire à l'aide d'une phrase le rôle de chacune d'entre elles.
+  - AlivePage.js : indique le rôle du joueur (son nom) quand le joueur est toujours en vie 
+  - CastPage.js : page de vote
+  - CodePage.js : permet de rejoindre une partie à l'aide du code de la partie (code de la partie et le nom du joueur à saisir)
+  - CreatePage.js : Créer une partie de jeux et génére le code de la partie (utilisable par les autres joueur dans CodePage.js)
+  - DeadPage.js : indique au joueur qu'il est mort (page de game over)
+  - EndPage.js : indique la fin de la partie et les gagnants de cette dernière
+  - NightPage.js : indique la nuit 
+  - ResultsPage.js : indique le résultat des votes (qui est mort) quand tout le monde a voté, dans le cas échéant qu'on attend la décision de tous les joueurs
+  - SpellPage.js : réservé à la sorcière, elle peut alors choisir d'utiliser l'une des potions ou de ne rien faire
+  - StartPage.js : page d'accueil qui permet de créer ou de rejoindre une partie
+
 - Pourquoi voit-on sur plusieurs pages "Chargement du master game en cours" ?
+  - à cause de MasterGameProvider
+
 - Avec les classes, nous utilisions `withMyContext` pour s'inscrire aux données d'un provider. Identifier dans services/Game.js la fonction qui joue désormais ce rôle.
+  - Fonction qui joue le rôle de `withMyContext` : 
+  ````jsx
+    export const useGame = () => {
+      const {game} = useContext(gameContext);
+      return {game};
+    };
+  ````
+
 - Dans `CodePage`, rappeler comment un formulaire gère les champs de remplissage des données.o
+  - dans `CodePage`, les nouvelles données sont suavegardés dans les useState
+
 
 ### Reprise du design
 
