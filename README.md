@@ -283,7 +283,7 @@ Copier .env dans .env.local et remplir de dernier à l'aide de ses identifiants 
   ````
 
 - Dans `App.js`, identifier les différents producteurs de données. Retrouver leur définition. Quelles données partagent-ils à l'ensemble de l'application ?
-  - BrowserRouter :  
+  - BrowserRouter :  Routage 
   - UserProvider : partage toute information relative à l'utilisateur actuelle
   - MasterGameProvider :  partage les informations pour créer le jeux, et fournit les résultats du jeux
   - Game Provider : partage les information relative au status des joueurs (ex : si le joueur et toujours en vie ou non)
@@ -328,11 +328,23 @@ Copier .env dans .env.local et remplir de dernier à l'aide de ses identifiants 
 ### Utilisation de Firebase
 
 - Dans 'User.js', comment fait-on pour garder une trace persistente de l'application, même lorsqu'on rafraichit la page ? Comment reconnait-on l'utilisateur lorsqu'il revient dans l'application ?
+  - 
+
 - Dans Firebase, nous ne pouvons pas ajouter des champs à un utilisateur. Par conséquent, nous devons créer une collection d'utilisateurs et synchroniser les utilisateurs avec cette table. Expliquer où est-ce que cette synchronisation a lieu.
+  - 
+
 - A votre avis, à quoi sert useEffect ?
+  - 
+  
 - A quoi sert la fonction `unsubscribe` utilisée dans les `useEffect` de `User.js` ?
+  - 
+
 - Décrire les trois valeurs de retour de `UseUser`.
+  - 
+
 - Combien de collections dans Firebase pouvez-vous identifier ? A quoi correspondent les `doc` ?
+  - 
+
 
 ### Contribuer à l'application
 
