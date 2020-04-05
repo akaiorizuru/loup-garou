@@ -48,12 +48,14 @@ const CodePage = ({setGame}) => {
         placeholder="Ajouter le code de la partie"
         onChange={e => setCode(e.target.value)}
       />
+      <br/>
       <Input
         type="text"
         name="name"
         placeholder="Ajouter votre nom"
         onChange={e => setName(e.target.value)}
       />
+      <br/>
       <Button>Démarrer</Button>
     </form>
   );

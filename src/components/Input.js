@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import './Layout.css';
 
 const Input = styled.input`
-    width: 50%;
+    width: 40%;
     padding: 12px 20px;
     margin: 8px;
     display: inline-block;

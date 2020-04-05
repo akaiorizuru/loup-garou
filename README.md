@@ -328,22 +328,28 @@ Copier .env dans .env.local et remplir de dernier à l'aide de ses identifiants 
 ### Utilisation de Firebase
 
 - Dans 'User.js', comment fait-on pour garder une trace persistente de l'application, même lorsqu'on rafraichit la page ? Comment reconnait-on l'utilisateur lorsqu'il revient dans l'application ?
-  - 
+  - `firebase.auth` permet de garder une trace persistente de l'application en sauvegardant les donnés dans firebase lors de l'authentification.
 
 - Dans Firebase, nous ne pouvons pas ajouter des champs à un utilisateur. Par conséquent, nous devons créer une collection d'utilisateurs et synchroniser les utilisateurs avec cette table. Expliquer où est-ce que cette synchronisation a lieu.
-  - 
+  - Cette synchronisation a lieu au niveau de la fonction `useUser` où il vérifie si un utilisateur existe ou non dans la base de donné (avec `if(!doc.exists) { doc.set({uid: auth.user.uid})}` dans useEffect qui est lieu même dans useUser, ) et le met à jour s'il n'existe pas encore.
 
 - A votre avis, à quoi sert useEffect ?
-  - 
-  
+  - `useEffect` est exécuté après que le rendu est apparu sur l'écran. Il peut renvoyer une fonstion de nettoyage avec `unsubscribe`.
+
 - A quoi sert la fonction `unsubscribe` utilisée dans les `useEffect` de `User.js` ?
-  - 
+  - La fonction `unsubscribe` est une fonctionde nettoyage. Elle est exécutée pour effacer les donnés précédents avant l'exécutn du prochain.
 
 - Décrire les trois valeurs de retour de `UseUser`.
-  - 
+  - `error` : boléan qui indique si une erreur a eu lieu ou non 
+  - `loading` : booléan qui indique le chargement des information
+  - `user` : objet qui rensigne les information de l'utilisateur (`setUser({...doc, ...auth.user});`)
 
 - Combien de collections dans Firebase pouvez-vous identifier ? A quoi correspondent les `doc` ?
-  - 
+  - Nombre de collection : 2
+    - `game` 
+    - `user`
+  - Les `doc` correspondent à une sorte d'entré aux donnés de firebase. Il permet entre autre de renseigner la valeur du `uid` (l'id du user) dans la base de donnée avec `doc.set({uid: auth.user.uid})` si ce derniers n'existait pas avant.
+
 
 
 ### Contribuer à l'application
