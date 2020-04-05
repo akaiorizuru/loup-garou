@@ -18,6 +18,7 @@ const Button = styled.button`
   border-radius: 8px;
   border: none;
   text-transform: uppercase;
+  background-color: #af08c2;
   &:hover {
       color: grey;
       background-color: yellow;

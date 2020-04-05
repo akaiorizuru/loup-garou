@@ -5,8 +5,12 @@ import Footer from './Footer';
 
 const Section = styled.section`
     background-color : #2b7d80;
-    padding: 20%;
+    width: 100%;
+    padding: 20px;
     color : white;
+`;
+const Article = styled.article`
+    padding: 10%;
 `;
 
 function Layout (props){
@@ -14,7 +18,9 @@ function Layout (props){
         <div>
             <Header></Header>
             <Section>
-                {props.children}
+                <Article>
+                    {props.children}
+                </Article>
             </Section>
             <Footer></Footer>
         </div>
