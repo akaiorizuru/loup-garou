@@ -15,6 +15,7 @@ const Start = () => {
       <Link to="/join">
         <Button>Rejoindre une partie</Button>
       </Link>
+      <br/>
     </div>
   );
 }
