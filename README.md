@@ -363,4 +363,4 @@ Copier .env dans .env.local et remplir de dernier à l'aide de ses identifiants 
 ### Rapport
 
 Rédiger un court rapport -- inférieur à une page, expliquant les modifications apportées au projet. Motiver ses choix. Expliquer les difficultés rencontrées.
-- Utilisation de styled-icons pour le "logo" du header + Emoji 'Dizzy' dans la page `Dead`
+- Utilisation de styled-icons pour le "logo" du header, emoji 'Dizzy' dans la page `Dead`, icon de lune pour `NightPage`
